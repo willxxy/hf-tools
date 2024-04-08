@@ -3,10 +3,14 @@ from peft import LoraConfig, TaskType, get_peft_model
 from huggingface_hub import login
 
 ### LORA CONFIGS
+# This is usually the best resulting target modules (all the projection layers)
+target_modules = ["q_proj", "o_proj", 'k_proj', 'v_proj', 'gate_proj', 'up_proj', 'down_proj']
+# If for some reason you run into a bug where these modules do not exist do this as the target_modules
+target_modules = None # --> This will automatically select the modules for you.
+
 lora_config = LoraConfig(
         r=8,
-        target_modules=["q_proj", "o_proj", 'k_proj', 'v_proj', 
-                        'gate_proj', 'up_proj', 'down_proj'],
+        target_modules=target_modules,
         bias = 'none',
         lora_dropout=0.01,
         task_type = TaskType.CAUSAL_LM,
