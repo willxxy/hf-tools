@@ -29,6 +29,15 @@ tokenizer = AutoTokenizer('path/to/checkpoint', cache_dir = 'path/to/cache')
 model = AutoModel('path/to/checkpoint', cache_dir = 'path/to/cache')
 
 ### ADDING BNB
+# Note that if you add the bnb config, you do not need to explicitly put the model on device.
 tokenizer = AutoTokenizer('path/to/checkpoint', cache_dir = 'path/to/cache', quantization_config = bnb_config)
 model = AutoModel('path/to/checkpoint', cache_dir = 'path/to/cache', quantization_config = bnb_config)
+
+### WRAPPING MODEL TO PEFT WITH LORA CONFIGS
+model = get_peft_model(model, lora_config)
+
+### PRINT TRAINIABLE PARAMETERS AFTER WRAPPING MODEL
+model.print_trainable_parameters()
+
+
 
