@@ -7,6 +7,8 @@ from huggingface_hub import login
 target_modules = ["q_proj", "o_proj", 'k_proj', 'v_proj', 'gate_proj', 'up_proj', 'down_proj']
 # If for some reason you run into a bug where these modules do not exist do this as the target_modules
 target_modules = None # --> This will automatically select the modules for you.
+# This is also an alternative that targets all linear layers
+target_modules= 'all-linear'
 
 lora_config = LoraConfig(
         r=8,
