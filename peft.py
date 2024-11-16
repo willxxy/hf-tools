@@ -42,4 +42,11 @@ model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 
 
+### For peft wrapped models you have to access atrributes like 
+print(model.base_model.model)
+print(model.base_model.model.embed_tokens)
+etc...
+ 
+
+
 
